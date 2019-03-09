@@ -45,7 +45,7 @@ for i in range(3):
   ax.loglog(ix1[i], iz1[i], ['r.', 'g.', 'b.'][i], label="Iz (Iy = %s mA)" % iy_names[i])
   ax.loglog(ix1[i], iz1t[i], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Iy = %s mA)" % iy_names[i])
 
-plt.title("Geometric mean finder with fixed Iy")
+plt.title("Translinear geometric mean finder (fixed Iy)")
 plt.xlabel("Input current Ix (A)")
 plt.ylabel("Output current Iz (A)")
 plt.grid(True)
@@ -58,7 +58,7 @@ for i in range(3):
   ax.loglog(iy2[i], iz2[i], ['r.', 'g.', 'b.'][i], label="Iz (Ix = %s mA)" % ix_names[i])
   ax.loglog(iy2[i], iz2t[i], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Ix = %s mA)" % ix_names[i])
 
-plt.title("Geometric mean finder with fixed Ix")
+plt.title("Translinear geometric mean finder (fixed Ix)")
 plt.xlabel("Input current Iy (A)")
 plt.ylabel("Output current Iz (A)")
 plt.grid(True)
