@@ -59,8 +59,8 @@ ax = plt.subplot(111)
 for i in range(4):
   ax.semilogy(vb_exp[i], ib_exp[i], ['r.', 'y.', 'g.', 'b.'][i], label="Base current (%i)" % (i+1))
   ax.semilogy(vb_exp[i], ic_exp[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current (%i)" % (i+1), markersize=1)
-  ax.semilogy(vb_exp[i], ic_f(vb_exp[i], Uts[i], Iss[i]), 'k-', label="Theoretical Ic (Ut = %.4g, Is = %.4g)" % (Uts[i], Iss[i]))
-  ax.semilogy(vb_exp[i], ib_f(vb_exp[i], βs[i]), 'k--', label="Theoretical Ib (Ut = %.4g, Is = %.4g, β = %.4g)" % (Uts[i], Iss[i], βs[i]))
+  ax.semilogy(vb_exp[i], ic_f(vb_exp[i], Uts[i], Iss[i]), ['r-', 'y-', 'g-', 'b-'][i], label="Theoretical Ic (Ut = %.4g, Is = %.4g)" % (Uts[i], Iss[i]))
+  ax.semilogy(vb_exp[i], ib_f(vb_exp[i], βs[i]), ['r--', 'y--', 'g--', 'b--'][i], label="Theoretical Ib (Ut = %.4g, Is = %.4g, β = %.4g)" % (Uts[i], Iss[i], βs[i]))
 
 # ax.axvline(vb_exp[valid[0]], label='Sampled Data')
 # ax.axvline(vb_exp[valid[1]])
