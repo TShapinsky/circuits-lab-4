@@ -52,7 +52,7 @@ for i in range(4):
   Uts[i], Iss[i], βs[i] = Ut, Is, β
 
 
-fig = plt.figure()
+fig = plt.figure(figsize=(8,6))
 ax = plt.subplot(111)
 
 # Joined semilog plot
@@ -65,11 +65,27 @@ for i in range(4):
 # ax.axvline(vb_exp[valid[0]], label='Sampled Data')
 # ax.axvline(vb_exp[valid[1]])
 
-plt.title("Transistor Currents vs Base Voltage")
+plt.title("Transistor Currents vs Base Voltages")
 plt.xlabel("Base Voltage (V)")
 plt.ylabel("Current (A)")
 plt.grid(True)
 ax.legend()
-plt.show()
-# plt.savefig("exp1.pdf")
+plt.savefig("exp1_semilog.pdf")
 ax.cla()
+
+
+# Plot of differences
+ic_avg = np.average(ic_exp, 0)
+ic_errs = [(ic - ic_avg)/ic_avg for ic in ic_exp]
+for i in range(4):
+  ax.plot(vb_exp[i], 100 * ic_errs[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current error (%i)" % (i+1), markersize=1)
+
+plt.title("Transistor Currents vs Base Voltages")
+plt.xlabel("Base Voltage (V)")
+plt.ylabel("Error (%)")
+plt.grid(True)
+ax.legend()
+plt.savefig("exp1_err.pdf")
+ax.cla()
+
+
