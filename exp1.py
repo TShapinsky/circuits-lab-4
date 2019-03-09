@@ -92,3 +92,15 @@ plt.savefig("exp1_err.pdf")
 ax.cla()
 
 
+# Plot of βs
+β_exp = ic_exp / ib_exp
+for i in range(4):
+  ax.semilogy(ib_exp[i], β_exp[i], ['r.', 'y.', 'g.', 'b.'][i], label="β (%i)" % (i+1))
+
+plt.title("Transistor Gains vs Base Voltages")
+plt.xlabel("Base Current (A)")
+plt.ylabel("Gain")
+plt.grid(True)
+ax.legend()
+plt.savefig("exp1_betas.pdf")
+ax.cla()
