@@ -33,9 +33,9 @@ for i in range(3):
 
 
 # Now let's do some theoretical fits
-def iz_t(ix, iy): return np.sqrt(ix * iy) 
-ix_t = [[iz_t(ix, iy) for ix in ixs] for (ixs, iy) in zip(ix1, iy1)]
-iy_t = [[iz_t(ix, iy) for iy in iys] for (ix, iys) in zip(ix2, iy2)]
+def iz_f(ix, iy): return np.sqrt(ix * iy) 
+iz1t = [[iz_f(ix, iy) for ix in ixs] for (ixs, iy) in zip(ix1, iy1)]
+iz2t = [[iz_f(ix, iy) for iy in iys] for (ix, iys) in zip(ix2, iy2)]
 
 fig = plt.figure(figsize=(8,6))
 ax = plt.subplot(111)
@@ -43,6 +43,7 @@ ax = plt.subplot(111)
 # Sink log-log plot
 for i in range(3):
   ax.loglog(ix1[i], iz1[i], ['r.', 'g.', 'b.'][i], label="Iz (Iy = %s ma)" % iy_names[i])
+  ax.loglog(ix1[i], iz1t[i], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Iy = %s ma)" % iy_names[i])
 
 plt.title("Geometric mean finder with fixed Iy")
 plt.xlabel("Input current Ix (A)")
@@ -55,6 +56,7 @@ ax.cla()
 # Source log-log plot
 for i in range(3):
   ax.loglog(iy2[i], iz2[i], ['r.', 'g.', 'b.'][i], label="Iz (Ix = %s ma)" % ix_names[i])
+  ax.loglog(iy2[i], iz2t[i], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Ix = %s ma)" % ix_names[i])
 
 plt.title("Geometric mean finder with fixed Ix")
 plt.xlabel("Input current Iy (A)")
