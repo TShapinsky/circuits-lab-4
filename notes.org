@@ -1,0 +1,29 @@
+vals: 20.5, 200, 2.05k
+
+* exp 2
+sink
+| current |
+| 9.94mA  |
+| .99mA   |
+| 98.6uA  |
+|         |
+source
+| res | current |
+|     |         |
+|     |         |
+|     |         |
+
+* exp3
+| Ix      |
+| 98.4uA  |
+| .99mA   |
+| 9.997mA |
+| 0.9uA   |
+| 9.8uA   |
+
+| Iy      |
+| 9.94mA  |
+| 1.05mA  |
+| 107.5uA |
+| 10.8uA  |
+| 1.0uA   |
