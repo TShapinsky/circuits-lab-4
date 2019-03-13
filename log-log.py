@@ -8,7 +8,7 @@ V = []
 Ix = []
 Iz = []
 
-with open('data/exp3_sink_(.1ma).csv') as f:
+with open('data/exp2_sink_(.001ma).csv') as f:
     c = csv.reader(f, delimiter=",")
     next(c)
     

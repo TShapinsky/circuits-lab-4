@@ -3,10 +3,10 @@ import numpy as np
 
 s = smu.smu()
 
-a = np.logspace(-8, -2, 1000)
+a = np.logspace(-9, -2, 1000)
 
-f = open("data/exp3_sink_(.1ma).csv",'w')
-f.write('"Iy","Iz"\n')
+f = open("data/exp2_sink_(.001ma).csv",'w')
+f.write('"Ix","Iz"\n')
 
 s.set_current(1,0)
 s.autorange(1)
