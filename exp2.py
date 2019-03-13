@@ -6,25 +6,25 @@ import matplotlib.pyplot as plt
 
 
 ix1 = [[],[],[]]
-iy1 = [0.0001, 0.001, 0.01]
-iy_names = [".1", "1", "10"]
+iy1 = np.array([99.2, 9.8, 0.9]) * 1e6 # microamps to amps
+iy_names = [".1ma", ".01ma", ".001ma"]
 iz1 = [[],[],[]]
 
 for i in range(3):
-  with open("data/exp2_sink_(%sma).csv" % iy_names[i]) as f:
+  with open("data/exp2_sink_(%s).csv" % iy_names[i]) as f:
     c = csv.reader(f, delimiter=",")
     next(c) # Throw away the header
     for row in c:
       ix1[i] += [float(row[0])]
       iz1[i] += [-float(row[1])] # Iz goes the other way, so invert it
 
-ix2 = [0.0001, 0.001, 0.01]
-ix_names = [".1", "1", "10"]
+ix2 = np.array([102.8, 10.3, 1.0]) * 1e6 # microamps to amps
+ix_names = [".1ma", ".01ma", ".001ma"]
 iy2 = [[],[],[]]
 iz2 = [[],[],[]]
 
 for i in range(3):
-  with open("data/exp2_source_(%sma).csv" % ix_names[i]) as f:
+  with open("data/exp2_source_(%s).csv" % ix_names[i]) as f:
     c = csv.reader(f, delimiter=",")
     next(c) # Throw away the header
     for row in c:
