@@ -57,6 +57,14 @@ for i in range(4):
   print("Transistor %i: Ut = %g, Is = %g, β = %g" % (i+1, Ut, Is, β))
   Uts[i], Iss[i], βs[i] = Ut, Is, β
 
+def clip_range(xs, ys, bounds):
+  pairs = [(x, y) for (x, y) in zip(xs, ys) if (bounds[0] <= y) and (y <= bounds[1])]
+  return list(zip(*pairs))
+
+ic_t = [ic_f(vb_exp[i], Uts[i], Iss[i]) for i in range(4)]
+ic_tc = [clip_range(x, y, (1e-11, 1e-1)) for (x, y) in zip(vb_exp, ic_t)]
+ib_t = [ib_f(vb_exp[i], βs[i]) for i in range(4)]
+ib_tc = [clip_range(x, y, (1e-11, 1e-1)) for (x, y) in zip(vb_exp, ib_t)]
 
 fig = plt.figure(figsize=(8,6))
 ax = plt.subplot(111)
@@ -65,8 +73,8 @@ ax = plt.subplot(111)
 for i in range(4):
   ax.semilogy(vb_exp[i], ib_exp[i], ['r.', 'y.', 'g.', 'b.'][i], label="Base current (%i)" % (i+1))
   ax.semilogy(vb_exp[i], ic_exp[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current (%i)" % (i+1), markersize=1)
-  ax.semilogy(vb_exp[i], ic_f(vb_exp[i], Uts[i], Iss[i]), ['r-', 'y-', 'g-', 'b-'][i], label="Theoretical Ic (%i)" % (i+1))
-  ax.semilogy(vb_exp[i], ib_f(vb_exp[i], βs[i]), ['r--', 'y--', 'g--', 'b--'][i], label="Theoretical Ib (%i)" % (i+1))
+  ax.semilogy(ic_tc[i][0], ic_tc[i][1], ['r-', 'y-', 'g-', 'b-'][i], label="Theoretical Ic (%i)" % (i+1))
+  ax.semilogy(ib_tc[i][0], ib_tc[i][1], ['r--', 'y--', 'g--', 'b--'][i], label="Theoretical Ib (%i)" % (i+1))
 
 plt.title("Transistor Currents vs Base Voltages")
 plt.xlabel("Base Voltage (V)")
