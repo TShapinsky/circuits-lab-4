@@ -28,8 +28,10 @@ for i in range(3):
     c = csv.reader(f, delimiter=",")
     next(c) # Throw away the header
     for row in c:
-      iy2[i] += [-float(row[0])] # Iy goes the other way, so invert it
-      iz2[i] += [-float(row[1])] # Iz goes the other way, so invert it
+      this_iz2 = -float(row[1])
+      if this_iz2 >= 10e-8: # Remove bad data
+        iy2[i] += [-float(row[0])] # Iy goes the other way, so invert it
+        iz2[i] += [this_iz2] # Iz goes the other way, so invert it
 
 
 # Now let's do some theoretical fits
