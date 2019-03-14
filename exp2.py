@@ -52,8 +52,7 @@ ax = plt.subplot(111)
 # Sink log-log plot
 for i in range(3):
   ax.loglog(ix1[i], iz1[i], ['r.', 'g.', 'b.'][i], label="Iz (Iy = %s)" % iy_names[i])
-  # ax.loglog(ix1[i], iz1t[i], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Iy = %s)" % iy_names[i])
-  ax.loglog(clipped1[i][0], clipped1[i][1], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Iy = %s)" % iy_names[i])
+  ax.loglog(clipped1[i][0], clipped1[i][1], ['c-', 'm-', 'y-'][i], label="Theoretical fit (Iy = %s)" % iy_names[i])
 
 plt.title("Translinear geometric mean finder (fixed Iy)")
 plt.xlabel("Input current Ix (A)")
@@ -66,7 +65,6 @@ ax.cla()
 # Source log-log plot
 for i in range(3):
   ax.loglog(iy2[i], iz2[i], ['r.', 'g.', 'b.'][i], label="Iz (Ix = %s)" % ix_names[i])
-  # ax.loglog(iy2[i], iz2t[i], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Ix = %s)" % ix_names[i])
   ax.loglog(clipped2[i][0], clipped2[i][1], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Ix = %s)" % ix_names[i])
 
 plt.title("Translinear geometric mean finder (fixed Ix)")
