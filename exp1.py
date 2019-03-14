@@ -62,17 +62,21 @@ def clip_range(xs, ys, bounds):
   return list(zip(*pairs))
 
 ic_t = [ic_f(vb_exp[i], Uts[i], Iss[i]) for i in range(4)]
-ic_tc = [clip_range(x, y, (1e-11, 1e-1)) for (x, y) in zip(vb_exp, ic_t)]
+ic_tc = [clip_range(x, y, (1e-10, 1e-0)) for (x, y) in zip(vb_exp, ic_t)]
 ib_t = [ib_f(vb_exp[i], βs[i]) for i in range(4)]
-ib_tc = [clip_range(x, y, (1e-11, 1e-1)) for (x, y) in zip(vb_exp, ib_t)]
+ib_tc = [clip_range(x, y, (1e-10, 1e-3)) for (x, y) in zip(vb_exp, ib_t)]
+
+end_clip = 50
+vb_clipped = [vb_exp[i][:-end_clip] for i in range(4)]
+vb_clipped = [vb_exp[i][:-end_clip] for i in range(4)]
 
 fig = plt.figure(figsize=(8,6))
 ax = plt.subplot(111)
 
 # Joined semilog plot
 for i in range(4):
-  ax.semilogy(vb_exp[i], ib_exp[i], ['r.', 'y.', 'g.', 'b.'][i], label="Base current (%i)" % (i+1))
-  ax.semilogy(vb_exp[i], ic_exp[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current (%i)" % (i+1), markersize=1)
+  ax.semilogy(vb_exp[i][:-end_clip], ib_exp[i][:-end_clip], ['r.', 'y.', 'g.', 'b.'][i], label="Base current (%i)" % (i+1))
+  ax.semilogy(vb_exp[i][:-end_clip], ic_exp[i][:-end_clip], ['ro', 'yo', 'go', 'bo'][i], label="Collector current (%i)" % (i+1), markersize=1)
   ax.semilogy(ic_tc[i][0], ic_tc[i][1], ['r-', 'y-', 'g-', 'b-'][i], label="Theoretical Ic (%i)" % (i+1))
   ax.semilogy(ib_tc[i][0], ib_tc[i][1], ['r--', 'y--', 'g--', 'b--'][i], label="Theoretical Ib (%i)" % (i+1))
 
@@ -87,10 +91,9 @@ ax.cla()
 
 # Plot of differences
 ic_avg = np.average(ic_exp, 0)
-ic_errs = [((ic - ic_avg)/ic_avg)[:-50] for ic in ic_exp]
-vb_clipped = [vb_exp[i][:-50] for i in range(4)]
+ic_errs = [((ic - ic_avg)/ic_avg)[:-end_clip] for ic in ic_exp]
 for i in range(4):
-  ax.plot(vb_clipped[i], 100 * ic_errs[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current error (%i)" % (i+1), markersize=1)
+  ax.plot(vb_exp[i][:-end_clip], 100 * ic_errs[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current error (%i)" % (i+1), markersize=1)
 
 plt.title("Transistor Current Differences vs Base Voltages")
 plt.xlabel("Base Voltage (V)")
