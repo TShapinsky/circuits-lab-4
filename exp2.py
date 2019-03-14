@@ -65,7 +65,7 @@ ax.cla()
 # Source log-log plot
 for i in range(3):
   ax.loglog(iy2[i], iz2[i], ['r.', 'g.', 'b.'][i], label="Iz (Ix = %s)" % ix_names[i])
-  ax.loglog(clipped2[i][0], clipped2[i][1], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Ix = %s)" % ix_names[i])
+  ax.loglog(clipped2[i][0], clipped2[i][1], ['c-', 'm-', 'y-'][i], label="Theoretical fit (Ix = %s)" % ix_names[i])
 
 plt.title("Translinear geometric mean finder (fixed Ix)")
 plt.xlabel("Input current Iy (A)")

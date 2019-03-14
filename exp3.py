@@ -41,9 +41,9 @@ def clip_range(xs, ys, bounds):
   pairs = [(x, y) for (x, y) in zip(xs, ys) if (bounds[0] <= y) and (y <= bounds[1])]
   return list(zip(*pairs))
 
-
 clipped1 = [clip_range(ix, iz, (1e-8, 1e-1)) for (ix, iz) in zip(ix1, iz1t)]
-clipped2 = [clip_range(iy, iz, (1e-9, 1e-2)) for (iy, iz) in zip(iy2, iz2t)]
+clipped2 = [clip_range(iy, iz, (1e-8, 1e-2)) for (iy, iz) in zip(iy2, iz2t)]
+
 
 fig = plt.figure(figsize=(8,6))
 ax = plt.subplot(111)
@@ -51,7 +51,7 @@ ax = plt.subplot(111)
 # Sink log-log plot
 for i in range(3):
   ax.loglog(ix1[i], iz1[i], ['r.', 'g.', 'b.'][i], label="Iz (Iy = %s)" % iy_names[i])
-  ax.loglog(clipped1[i][0], clipped1[i][1], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Iy = %s)" % iy_names[i])
+  ax.loglog(clipped1[i][0], clipped1[i][1], ['c-', 'm-', 'y-'][i], label="Theoretical fit (Iy = %s)" % iy_names[i])
 
 plt.title("Quadratic inverter (fixed Iy)")
 plt.xlabel("Input current Ix (A)")
@@ -64,7 +64,7 @@ ax.cla()
 # Source log-log plot
 for i in range(3):
   ax.loglog(iy2[i], iz2[i], ['r.', 'g.', 'b.'][i], label="Iz (Ix = %s)" % ix_names[i])
-  ax.loglog(clipped2[i][0], clipped2[i][1], ['r-', 'g-', 'b-'][i], label="Theoretical fit (Ix = %s)" % ix_names[i])
+  ax.loglog(clipped2[i][0], clipped2[i][1], ['c-', 'm-', 'y-'][i], label="Theoretical fit (Ix = %s)" % ix_names[i])
 
 plt.title("Quadratic inverter (fixed Ix)")
 plt.xlabel("Input current Iy (A)")
