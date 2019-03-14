@@ -105,7 +105,7 @@ ax.cla()
 for i in range(4):
   ax.semilogy(ib_exp[i], β_exp[i], ['r.', 'y.', 'g.', 'b.'][i], label="β (%i)" % (i+1))
 
-plt.title("Transistor Gains vs Base Voltages")
+plt.title("Transistor Gains vs Base Currents")
 plt.xlabel("Base Current (A)")
 plt.ylabel("Gain")
 plt.grid(True)
