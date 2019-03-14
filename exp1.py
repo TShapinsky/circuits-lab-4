@@ -87,11 +87,12 @@ ax.cla()
 
 # Plot of differences
 ic_avg = np.average(ic_exp, 0)
-ic_errs = [(ic - ic_avg)/ic_avg for ic in ic_exp]
+ic_errs = [((ic - ic_avg)/ic_avg)[:-50] for ic in ic_exp]
+vb_clipped = [vb_exp[i][:-50] for i in range(4)]
 for i in range(4):
-  ax.plot(vb_exp[i], 100 * ic_errs[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current error (%i)" % (i+1), markersize=1)
+  ax.plot(vb_clipped[i], 100 * ic_errs[i], ['ro', 'yo', 'go', 'bo'][i], label="Collector current error (%i)" % (i+1), markersize=1)
 
-plt.title("Transistor Currents vs Base Voltages")
+plt.title("Transistor Current Differences vs Base Voltages")
 plt.xlabel("Base Voltage (V)")
 plt.ylabel("Error (%)")
 plt.grid(True)
