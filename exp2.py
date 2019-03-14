@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 ix1 = [[],[],[]]
-iy1 = np.array([99.2, 9.8, 0.9]) * 1e6 # microamps to amps
+iy1 = np.array([99.2, 9.8, 0.9]) * 1e-6 # microamps to amps
 iy_names = [".1ma", ".01ma", ".001ma"]
 iz1 = [[],[],[]]
 
@@ -18,7 +18,7 @@ for i in range(3):
       ix1[i] += [float(row[0])]
       iz1[i] += [-float(row[1])] # Iz goes the other way, so invert it
 
-ix2 = np.array([102.8, 10.3, 1.0]) * 1e6 # microamps to amps
+ix2 = np.array([102.8, 10.3, 1.0]) * 1e-6 # microamps to amps
 ix_names = [".1ma", ".01ma", ".001ma"]
 iy2 = [[],[],[]]
 iz2 = [[],[],[]]
